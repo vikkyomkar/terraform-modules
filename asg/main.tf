@@ -11,7 +11,7 @@ resource "aws_launch_configuration" "asg_config" {
   }
 }
 
-resource "aws_autoscaling_group" "current" {
+resource "aws_autoscaling_group" "asg_create" {
   name = "${var.asg_name}"
 
   force_delete         = true
