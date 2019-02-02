@@ -1,9 +1,9 @@
 resource "aws_launch_configuration" "asg_config" {
+  image_id        = "${var.ami}"
+  instance_type   = "${var.instance_type}"
+  security_groups = ["${var.sg}"]
+  key_name        = "${var.ssh_key}"
 
-  image_id             = "${var.ami}"
-  instance_type        = "${var.instance_type}"
-  security_groups      = ["${var.sg}"]
-key_name             = "${var.ssh_key}"
   root_block_device {
     volume_type           = "${var.ebs_type}"
     volume_size           = "${var.ebs_size}"
@@ -12,7 +12,7 @@ key_name             = "${var.ssh_key}"
 }
 
 resource "aws_autoscaling_group" "current" {
-  name  = "${var.asg_name}"
+  name = "${var.asg_name}"
 
   force_delete         = true
   vpc_zone_identifier  = ["${var.subnets}"]
@@ -23,7 +23,6 @@ resource "aws_autoscaling_group" "current" {
 
   health_check_grace_period = "${var.launch_time}"
   health_check_type         = "${var.health_check_type}"
-
 
   enabled_metrics = [
     "GroupMinSize",
@@ -54,12 +53,9 @@ resource "aws_autoscaling_group" "current" {
     propagate_at_launch = "true"
   }
 
-
   tag {
     key                 = "terraform"
     value               = "true"
     propagate_at_launch = "true"
   }
-
 }
-

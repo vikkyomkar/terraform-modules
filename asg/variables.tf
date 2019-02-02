@@ -35,6 +35,10 @@ variable "subnets" {
   type = "list"
 }
 
+variable "sg" {
+  type = "list"
+}
+
 variable "max_size" {
   type = "string"
 }
