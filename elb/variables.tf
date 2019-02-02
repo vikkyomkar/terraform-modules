@@ -6,6 +6,16 @@ variable "elb_name" {
   description = "Name of  aws LB"
 }
 
+variable "subnets" {
+  type        = "list"
+  description = "Subnets for ELB"
+}
+
+variable "sg" {
+  type        = "list"
+  description = "SGs for aws ELB"
+}
+
 variable "internal" {
   description = "If true, ELB will be an internal ELB"
 }
